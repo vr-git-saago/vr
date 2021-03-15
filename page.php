@@ -85,7 +85,7 @@ $randomphoto3 = $picfiles[$photonumbers[2]];
         echo $timehtml;
         echo $semesterdurationhtml;
         echo $semesterprogress;
-        echo $currentday;
+        
     ?>
     <img src="<?php echo $picsdir .$randomphoto; ?>" alt="vaade Haapsalus">
     <img src="<?php echo $picsdir .$randomphoto2; ?>" alt="vaade Haapsalus">
