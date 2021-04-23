@@ -1,5 +1,5 @@
 <?php
-	
+	require_once "usesession.php";
 	require_once "../../../conf.php";
 	//echo $server_host;
 	//muutujad sisestatud info meelespidamiseks
@@ -89,6 +89,9 @@
 		<input type="submit" name="news_submit" value="Salvesta uudis!">
 	</form>
 	<p><?php echo $news_input_error; ?></p>
+
+	<a href="show_news.php"><h2>Loe Uudiseid 👓📇</h2></a>
+	<p><a href="?logout=1">Logi välja</a></p>
 	
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-	
+	require_once "usesession.php";
 	require_once "../../../conf.php";
 	
 
@@ -22,7 +22,7 @@
 		}
 		$stmt = $conn -> prepare("SELECT vr21_news_news_title, vr21_news_news_content, vr21_news_news_author, vr21_news_added FROM vr21_news ORDER BY vr21_news_id DESC LIMIT ?");
 		echo $conn -> error;
-		$stmt -> bind_param('s', $news_count);
+		$stmt -> bind_param('i', $news_count);
 		$stmt -> bind_result($news_title_from_db, $news_content_from_db, $news_author_from_db, $news_added_from_db,);
 		$stmt -> execute();
         $rawnews_html = null;
@@ -69,5 +69,7 @@
 
 </form>
 	<?php echo $news_html; ?>
+	<a href="add_news.php"><h2>Lisa Uudis 📢📇</h2></a>
+	<p><a href="?logout=1">Logi välja</a></p>
 </body>
 </html>

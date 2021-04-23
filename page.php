@@ -1,4 +1,14 @@
 <?php
+// see peab meeles andmeid kui sisse logime
+// session_start();
+
+require("classes/SessionManager.class.php");
+SessionManager::sessionStart("vr", 0, "/~jaanus.saago/", "tigu.hk.tlu.ee");
+
+require_once "../../../conf.php";
+// require_once "fnc_general.php";
+require_once "fnc_user.php";
+
     $myname = "Jaanus Saago";
     $currenttime = date("d.m.Y H:i:s");
     
@@ -64,8 +74,17 @@ do {
 $randomphoto = $picfiles[$photonumbers[0]];
 $randomphoto2 = $picfiles[$photonumbers[1]];
 $randomphoto3 = $picfiles[$photonumbers[2]];
-    
 
+
+// sisselogimine
+$notice = null;
+$email = null;
+$email_error = null;
+$password_error = null;
+if(isset($_POST["login_submit"])) {
+    // kontrollime kas e-mail ja password on olemas
+    $notice = sign_in($_POST["email_input"], $_POST["password_input"]);
+}
 
 ?>
 <!DOCTYPE html>
@@ -81,6 +100,21 @@ $randomphoto3 = $picfiles[$photonumbers[2]];
     ?>
     </h1>
     <p>See leht on valminud õppetöö raames!</p>
+    <hr>
+    <h2>Logi sisse</h2>
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <label>E-mail (kasutajatunnus):</label>
+    <br>
+    <input type="email" name="email_input" value="<?php echo $email; ?>"><span><?php echo $email_error; ?></span>
+    <br>
+    <label>Salasõna:</label>
+    <br>
+    <input name="password_input" type="password"><span><?php echo $password_error; ?></span>
+    <br>
+    <input name="login_submit" type="submit" value="Logi sisse!"><span><?php echo $notice; ?></span>
+    </form>
+    <p>Loo endale <a href="add_user.php">kasutajakonto!</a></p>
+    <hr>
     <?php
         echo $timehtml;
         echo $semesterdurationhtml;
