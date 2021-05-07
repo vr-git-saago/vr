@@ -23,10 +23,12 @@ require_once "usesession.php";
 <body>
 	<h1>Sisseloginud kasutaja, vinge värk</h1>
 	<p>See leht on valminud õppetöö raames!</p>
+	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p><p><a href="?logout=1">Logi välja</a></p>
 	<hr>
 	<a href="add_news.php"><h2>Lisa Uudis 📢📇</h2></a>
 	<br>
 	<a href="show_news.php"><h2>Loe Uudiseid 👓📇</h2></a>
-	<p><a href="?logout=1">Logi välja</a></p>
+	<a href="upload_photo.php">Fotode üleslaadimine</a>
+	
 </body>
 </html>

@@ -81,11 +81,12 @@ $notice = null;
 $email = null;
 $email_error = null;
 $password_error = null;
+$login_error = null;
 if(isset($_POST["login_submit"])) {
+
     // kontrollime kas e-mail ja password on olemas
     $notice = sign_in($_POST["email_input"], $_POST["password_input"]);
-}
-
+} 
 ?>
 <!DOCTYPE html>
 <html lang="et">
@@ -109,7 +110,7 @@ if(isset($_POST["login_submit"])) {
     <br>
     <label>Salasõna:</label>
     <br>
-    <input name="password_input" type="password"><span><?php echo $password_error; ?></span>
+    <input name="password_input" type="password"><span><?php echo $password_error; echo $login_error; ?></span>
     <br>
     <input name="login_submit" type="submit" value="Logi sisse!"><span><?php echo $notice; ?></span>
     </form>

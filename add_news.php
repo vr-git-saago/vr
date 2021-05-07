@@ -69,6 +69,7 @@
 <body>
 	<h1>Uudiste lisamine</h1>
 	<p>See leht on valminud õppetöö raames!</p>
+	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p><p><a href="?logout=1">Logi välja</a></p>
 	<hr>
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 		<label for="news_title_input">Uudise pealkiri</label>
@@ -91,7 +92,9 @@
 	<p><?php echo $news_input_error; ?></p>
 
 	<a href="show_news.php"><h2>Loe Uudiseid 👓📇</h2></a>
-	<p><a href="?logout=1">Logi välja</a></p>
+	<hr>
+	<p>Tagasi <a href="home.php">koju</a></p>
+    <hr>
 	
 </body>
 </html>

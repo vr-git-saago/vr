@@ -61,6 +61,7 @@
 <body>
 	<h1>Uudiste lugemine</h1>
 	<p>See leht on valminud õppetöö raames!</p>
+	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p><p><a href="?logout=1">Logi välja</a></p>
 	<hr>
 <form method="POST">
 
@@ -70,6 +71,8 @@
 </form>
 	<?php echo $news_html; ?>
 	<a href="add_news.php"><h2>Lisa Uudis 📢📇</h2></a>
-	<p><a href="?logout=1">Logi välja</a></p>
+	<hr>
+        <p>Tagasi <a href="home.php">koju</a></p>
+    <hr>
 </body>
 </html>
