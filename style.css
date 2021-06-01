@@ -1,0 +1,47 @@
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-image: linear-gradient(to top left, #F5EFED 0%, #2293a4a8 100%);
+    height: 100vh;
+}
+h1 {
+    font-family: 'Limelight', cursive;
+    justify-content: center;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+p {
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 20px 0px 20px 0px;
+}
+.pilt {
+   margin: 0px 20px 0px 20px;
+}
+.nupuke {
+    opacity: 0.8;
+    font-size: 30px;
+    background-color: #2cc0d79e;
+    border-radius: 20px;
+    padding: 1rem;
+    transition: 0.3s ease-out;
+    
+}
+.nupuke:hover {
+    padding: 1rem 5rem 1rem 5rem;
+    transition: 0.3s ease-in-out;
+}

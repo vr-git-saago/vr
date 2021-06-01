@@ -2,12 +2,24 @@
 // see peab meeles andmeid kui sisse logime
 // session_start();
 
-require("classes/SessionManager.class.php");
+require_once "classes/SessionManager.class.php";
 SessionManager::sessionStart("vr", 0, "/~jaanus.saago/", "tigu.hk.tlu.ee");
 
 require_once "../../../conf.php";
 // require_once "fnc_general.php";
 require_once "fnc_user.php";
+
+// // klassi näide
+// require_once "classes/Test.class.php";
+// $test_object = new Test(5);
+// // näita muutujat non_secret classist Test
+// // kui secretit küsida siis selle tuleb error sest see on private
+// echo " Avalik number on " .$test_object->non_secret .". ";
+// $test_object->reveal();
+
+// // paneme klassi kinni eemaldame selle konkreetse väärtuse ja destruktor läheb automaatselt tööle
+// unset($test_object);
+// // klassi näide lõppes
 
     $myname = "Jaanus Saago";
     $currenttime = date("d.m.Y H:i:s");
@@ -115,6 +127,7 @@ if(isset($_POST["login_submit"])) {
     <input name="login_submit" type="submit" value="Logi sisse!"><span><?php echo $notice; ?></span>
     </form>
     <p>Loo endale <a href="add_user.php">kasutajakonto!</a></p>
+    <p>Tutvu pildi <a href="gallery.php">galeriiga!</a></p>
     <hr>
     <?php
         echo $timehtml;

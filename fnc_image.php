@@ -1,73 +1,107 @@
 <?php
-				
-    //suuruse muutmine normal
-    function image_resize($temp_image, $image_max_w, $image_max_h) {
-    
-        $image_w = imagesx($temp_image);
-        $image_h = imagesy($temp_image);
-        
-        //kuvasuhte säilitamiseks arvutame suuruse muutuse kordaja lähtudes kõrgusest või laiusest
-        if($image_w / $image_max_w > $image_h / $image_max_h){
-            $image_size_ratio = $image_w / $image_max_w;
-        } else {
-            $image_size_ratio = $image_h / $image_max_h;
-        }
 
-        
-        $image_new_w = round($image_w / $image_size_ratio);
-        $image_new_h = round($image_h / $image_size_ratio);
-        
-        //vähendamiseks loome uue image objekti, kuhu kopeerime vähendatud kujutise
-        $new_temp_image = imagecreatetruecolor($image_new_w, $image_new_h);
-        // 
-        imagecopyresampled($new_temp_image, $temp_image, 0, 0, 0, 0, $image_new_w, $image_new_h, $image_w, $image_h);
-        return $new_temp_image;
-    }
-    // suuruse muutmine thumbnail
-    function image_resize_thumb($temp_image, $image_max_w, $image_max_h) {
-    
-        $image_w = imagesx($temp_image);
-        $image_h = imagesy($temp_image);
-        $square = null;
-        //ruudu saamiseks leiame kumb külg on pikkem, ning sellest lahutame lühema külje ja saadud summa jagame kahega
-        if($image_w  > $image_h){
-            $square = $image_h;
-            $offset_h = 0;
-            $offset_w = ($image_w - $image_h) / 2;
-        } elseif($image_w  < $image_h) {
-            $square = $image_w;
-            $offset_w = 0;
-            $offset_h = ($image_h - $image_w) / 2;
-        } else {
-            // kui juba on ruudu kujuline siis ei ole vaja arvutada
-            $square = $x;
-            $offset_w = $offset_h = 0;
-        }
-        
-        // teen eraldi muutuja ruudu külje suurusele, et lihtsam jälgida
-        $image_square_size = $image_max_w;
 
-        //vähendamiseks loome uue image objekti, kuhu kopeerime vähendatud kujutise
-        $new_temp_image = imagecreatetruecolor($image_max_w, $image_max_h);
-        // 
-        imagecopyresampled($new_temp_image, $temp_image, 0, 0, $offset_w, $offset_h, $image_square_size, $image_square_size, $square, $square);
-        return $new_temp_image;
+// pildi valimin galerii lehele
+function show_pic() {
+    $notice = 0;
+    $privacy = 2;
+    $conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("SELECT vr21_photos.vr21_photos_id, vr21_photos.vr21_photos_filename, vr21_photos.vr21_photos_alttext, vr21_users.vr21_users_firstname, vr21_users.vr21_users_lastname FROM vr21_photos JOIN vr21_users ON vr21_photos.vr21_photos_userid = vr21_users.vr21_users_id WHERE vr21_photos.vr21_photos_privacy <= ? AND vr21_photos.vr21_photos_deleted IS NULL GROUP BY vr21_photos.vr21_photos_id");
+    echo $conn -> error;
+    $stmt -> bind_param("i", $privacy);
+    $stmt -> bind_result($photo_id_from_db, $photo_filename_from_db, $photo_alttext_from_db, $user_firstname_from_db, $user_lastname_from_db);
+    $stmt -> execute();
+    $display_photos_html = null;
+
+    while ($stmt -> fetch()) {
+        
+        $display_photos_html .= '<div class="pilt">';
+        $display_photos_html .= '<img src="../upload_photos_thumb/' .$photo_filename_from_db .'" alt="' .$photo_alttext_from_db .'" class="thumb" data-fn="pildifaili_nimi" data-id="pildi_id">';
+		$display_photos_html .= '<p>'.$user_firstname_from_db ." " .$user_lastname_from_db .'</p></div>';
+
     }
-    // andmebaasi saatmine
-    function photo_to_sql($user_id, $image_file_name, $orig_name, $alt_text, $privacy) {
-        $notice = 0;
-        $conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
-        $stmt = $conn->prepare("INSERT INTO vr21_photos (vr21_photos_userid, vr21_photos_filename, vr21_photos_origname, vr21_photos_alttext, vr21_photos_privacy) VALUES (?, ?, ?, ?, ?) ");
-        // Kui peaks viga olema siis väljastame vea
-        echo $conn->error;
-        //Seome küsimärgid parameetridega
-        $stmt -> bind_param("issss",$user_id, $image_file_name, $orig_name, $alt_text, $privacy);
-        // ja lõpuks käivitame
-        if ($stmt -> execute()){
-            $notice = 1;
-        }
-        $stmt -> close();
-		$conn -> close();
-        return $notice;
-    }
-?>
+    $stmt -> close();
+    $conn -> close();
+    return $display_photos_html;
+
+}
+
+function resize_photo($src, $w, $h, $keep_orig_proportion = true){
+	$image_w = imagesx($src);
+	$image_h = imagesy($src);
+	$new_w = $w;
+	$new_h = $h;
+	$cut_x = 0;
+	$cut_y = 0;
+	$cut_size_w = $image_w;
+	$cut_size_h = $image_h;
+	
+	if($w == $h){
+		if($image_w > $image_h){
+			$cut_size_w = $image_h;
+			$cut_x = round(($image_w - $cut_size_w) / 2);
+		} else {
+			$cut_size_h = $image_w;
+			$cut_y = round(($image_h - $cut_size_h) / 2);
+		}	
+	} elseif($keep_orig_proportion){//kui tuleb originaaproportsioone säilitada
+		if($image_w / $w > $image_h / $h){
+			$new_h = round($image_h / ($image_w / $w));
+		} else {
+			$new_w = round($image_w / ($image_h / $h));
+		}
+	} else { //kui on vaja kindlasti etteantud suurust, ehk pisut ka kärpida
+		if($image_w / $w < $image_h / $h){
+			$cut_size_h = round($image_w / $w * $h);
+			$cut_y = round(($image_h - $cut_size_h) / 2);
+		} else {
+			$cut_size_w = round($image_h / $h * $w);
+			$cut_x = round(($image_w - $cut_size_w) / 2);
+		}
+	}
+	
+	//loome uue ajutise pildiobjekti
+	$my_new_image = imagecreatetruecolor($new_w, $new_h);
+	//kui on läbipaistvusega png pildid, siis on vaja säilitada läbipaistvusega
+	imagesavealpha($my_new_image, true);
+	$trans_color = imagecolorallocatealpha($my_new_image, 0, 0, 0, 127);
+	imagefill($my_new_image, 0, 0, $trans_color);
+	imagecopyresampled($my_new_image, $src, 0, 0, $cut_x, $cut_y, $new_w, $new_h, $cut_size_w, $cut_size_h);
+	return $my_new_image;
+}
+
+function save_image_to_file($new_temp_image, $target, $image_File_type){
+	$notice = null;
+	if($image_File_type == "jpg"){
+		if(imagejpeg($new_temp_image, $target, 90)){
+			$notice = 1;
+		} else {
+			$notice = 0;
+		}
+	}
+	if($image_File_type == "png"){
+		if(imagepng($new_temp_image, $target, 6)){
+			$notice = 1;
+		} else {
+			$notice = 0;
+		}
+	}
+	return $notice;
+}
+
+function store_photo_data($image_file_name, $alt, $privacy, $orig_name){
+	$notice = null;
+	$conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
+	$stmt = $conn->prepare("INSERT INTO vr21_photos (vr21_photos_userid, vr21_photos_filename, vr21_photos_alttext, vr21_photos_privacy, vr21_photos_origname) VALUES (?, ?, ?, ?, ?)");
+	echo $conn->error;
+	$stmt->bind_param("issis", $_SESSION["user_id"], $image_file_name, $alt, $privacy, $orig_name);
+	if($stmt->execute()){
+		$notice = 1;
+	} else {
+		$notice = $stmt->error;
+	}
+	
+	$stmt->close();
+	$conn->close();
+	return $notice;
+}
