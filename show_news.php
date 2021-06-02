@@ -17,8 +17,8 @@
 		if (isset($_POST['news_output_submit'])){
 			$news_count = $_POST["news_output_num"];
 		} else {
-			// vaikimisi jääb uudiste kuvaks 3
-			$news_count = 3;
+			// vaikimisi jääb uudiste kuvaks 2
+			$news_count = 2;
 		}
 		$stmt = $conn -> prepare("SELECT vr21_news_news_title, vr21_news_news_content, vr21_news_news_author, vr21_news_added FROM vr21_news ORDER BY vr21_news_id DESC LIMIT ?");
 		echo $conn -> error;
@@ -57,22 +57,27 @@
 <head>
 	<meta charset="utf-8">
 	<title>Veebirakendused ja nende loomine 2021</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
 	<h1>Uudiste lugemine</h1>
 	<p>See leht on valminud õppetöö raames!</p>
 	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p><p><a href="?logout=1">Logi välja</a></p>
 	<hr>
 <form method="POST">
 
-<input type="number" min="1" max="10" value="3" name="news_output_num">
+<input type="number" min="1" max="10" value="2" name="news_output_num">
 <input type="submit" name="news_output_submit" value="Kuva uudiste arv">
 
 </form>
 	<?php echo $news_html; ?>
-	<a href="add_news.php"><h2>Lisa Uudis 📢📇</h2></a>
+	<div class="nupuke"><a href="add_news.php">Lisa Uudiseid 📢📇</a></div>
 	<hr>
         <p>Tagasi <a href="home.php">koju</a></p>
     <hr>
+</div>
 </body>
 </html>

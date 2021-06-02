@@ -65,8 +65,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>Veebirakendused ja nende loomine 2021</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
 	<h1>Uudiste lisamine</h1>
 	<p>See leht on valminud õppetöö raames!</p>
 	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p><p><a href="?logout=1">Logi välja</a></p>
@@ -91,10 +95,10 @@
 	</form>
 	<p><?php echo $news_input_error; ?></p>
 
-	<a href="show_news.php"><h2>Loe Uudiseid 👓📇</h2></a>
+	<div class="nupuke"><a href="show_news.php">Loe Uudiseid 👓📇</a></div>
 	<hr>
 	<p>Tagasi <a href="home.php">koju</a></p>
     <hr>
-	
+</div>
 </body>
 </html>
