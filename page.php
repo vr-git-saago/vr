@@ -131,7 +131,7 @@ if(isset($_POST["login_submit"])) {
     <input name="login_submit" type="submit" value="Logi sisse!"><span><?php echo $notice; ?></span>
     </form>
     <p>Loo endale <a href="add_user.php">kasutajakonto!</a></p>
-    <p>Tutvu pildi <a href="gallery.php">galeriiga!</a></p>
+    <div class="nupuke"><a href="gallery.php">Galerii</a></div>
     <hr>
     <?php
         echo $timehtml;
