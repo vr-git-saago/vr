@@ -19,16 +19,20 @@ require_once "usesession.php";
 <head>
 	<meta charset="utf-8">
 	<title>Veebirakendused ja nende loomine 2021</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<div class="container">
 	<h1>Sisseloginud kasutaja, vinge värk</h1>
 	<p>See leht on valminud õppetöö raames!</p>
 	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p><p><a href="?logout=1">Logi välja</a></p>
 	<hr>
-	<a href="add_news.php"><h2>Lisa Uudis 📢📇</h2></a>
+	<div class="nupuke"><a href="add_news.php">Lisa Uudiseid 📢📇</a></div>
 	<br>
-	<a href="show_news.php"><h2>Loe Uudiseid 👓📇</h2></a>
+	<div class="nupuke"><a href="show_news.php">Loe Uudiseid 👓📇</a></div>
 	<a href="upload_photo.php">Fotode üleslaadimine</a>
-	
+	</div>
 </body>
 </html>

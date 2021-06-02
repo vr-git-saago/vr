@@ -105,8 +105,12 @@ if(isset($_POST["login_submit"])) {
 <head>
     <meta charset="utf-8">
     <title>Veebirakendused ja nende loomine 2021</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
     <h1>
     <?php
         echo $myname;
@@ -135,8 +139,11 @@ if(isset($_POST["login_submit"])) {
         echo $semesterprogress;
         
     ?>
-    <img src="<?php echo $picsdir .$randomphoto; ?>" alt="vaade Haapsalus">
-    <img src="<?php echo $picsdir .$randomphoto2; ?>" alt="vaade Haapsalus">
-    <img src="<?php echo $picsdir .$randomphoto3; ?>" alt="vaade Haapsalus">
+    <div class="gallery">
+    <img class="pilt2" src="<?php echo $picsdir .$randomphoto; ?>" alt="vaade Haapsalus">
+    <img class="pilt2" src="<?php echo $picsdir .$randomphoto2; ?>" alt="vaade Haapsalus">
+    <img class="pilt2" src="<?php echo $picsdir .$randomphoto3; ?>" alt="vaade Haapsalus">
+    </div>
+</div>
 </body>
 </html>

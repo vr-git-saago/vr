@@ -128,8 +128,12 @@ if (isset($_POST["user_data_submit"])) {
     <head>
         <meta charset="utf-8">
         <title>Veebirakendused ja nende loomine 2021</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+    <div class="container">
         <h1>Loo endale kasutajakonto</h1>
         <p>See leht on valminud õppetöö raames!</p>
         <hr>
@@ -199,6 +203,7 @@ if (isset($_POST["user_data_submit"])) {
         <span><?php echo $birth_date_error ." " .$birth_day_error. " " .$birth_month_error ." " .$birth_year_error; ?></span>
         
         <br>
+        <br>
         <label>E-mail (kasutajatunnus):</label>
         <br>
         <input type="email" name="email" value="<?php echo $email; ?>"><span><?php echo $email_error; ?></span>
@@ -216,5 +221,6 @@ if (isset($_POST["user_data_submit"])) {
         <hr>
         <p>Tagasi <a href="page.php">avalehele</a></p>
         <hr>
+        </div>
         </body>
         </html>

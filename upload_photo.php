@@ -86,8 +86,12 @@ if(isset($_POST["photo_submit"])){
 <head>
 	<meta charset="utf-8">
 	<title>Veebirakendused ja nende loomine 2021</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<div class="container">
 	<h1>Fotode üleslaadimine</h1>
 	<p>See leht on valminud õppetöö raames!</p>
 	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p><p><a href="?logout=1">Logi välja</a></p>
@@ -120,6 +124,6 @@ if(isset($_POST["photo_submit"])){
 	<p><?php echo $photo_upload_error; echo $notice ?></p>
 
 	<p>Tagasi <a href="home.php">koju</a></p>
-	
+	</div>
 </body>
 </html>
