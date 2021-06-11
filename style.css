@@ -36,6 +36,9 @@ p {
    margin: 0px 20px 0px 20px;
 }
 .nupuke {
+    margin: 10px;
+    width: 20vw;
+    text-align: center;
     opacity: 0.8;
     font-size: 30px;
     background-color: #2cc0d79e;

@@ -1,7 +1,7 @@
 <?php
 
 
-// pildi valimin galerii lehele
+// pildi valimine galerii lehele
 function show_pic() {
     $notice = 0;
     $privacy = 2;
@@ -16,7 +16,7 @@ function show_pic() {
     while ($stmt -> fetch()) {
         
         $display_photos_html .= '<div class="pilt">';
-        $display_photos_html .= '<img src="../upload_photos_thumb/' .$photo_filename_from_db .'" alt="' .$photo_alttext_from_db .'" class="thumb" data-fn="pildifaili_nimi" data-id="pildi_id">';
+        $display_photos_html .= '<img src="../upload_photos_thumb/' .$photo_filename_from_db .'" alt="' .$photo_alttext_from_db .'" class="thumb" data-fn="'.$photo_filename_from_db .'" data-id="'.$photo_id_from_db.'">';
 		$display_photos_html .= '<p>'.$user_firstname_from_db ." " .$user_lastname_from_db .'</p></div>';
 
     }

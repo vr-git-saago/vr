@@ -89,6 +89,7 @@ if(isset($_POST["photo_submit"])){
 	<link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="style.css">
+	<script src="javascript/checkImageSize.js" defer></script>
 </head>
 <body>
 	<div class="container">
@@ -119,11 +120,11 @@ if(isset($_POST["photo_submit"])){
 		<input id="privacy_input_3" name="privacy_input" type="radio" value="1">
 		<br>
 		<br>
-		<input type="submit" name="photo_submit" value="Lae pilt üles!"><span><?php echo $notice; ?></span>
+		<input type="submit" id="photo_submit"  name="photo_submit" value="Lae pilt üles!"><span><?php echo $notice; ?></span>
 	</form>
-	<p><?php echo $photo_upload_error; echo $notice ?></p>
-
-	<p>Tagasi <a href="home.php">koju</a></p>
+	<p id="notice"><?php echo $photo_upload_error; echo $notice ?></p>
+	<div class="nupuke"><a href="gallery.php">Galerii</a></div>
+	<p >Tagasi <a href="home.php">koju</a></p>
 	</div>
 </body>
 </html>

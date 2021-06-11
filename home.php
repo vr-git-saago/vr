@@ -32,6 +32,7 @@ require_once "usesession.php";
 	<div class="nupuke"><a href="add_news.php">Lisa Uudiseid 📢📇</a></div>
 	<br>
 	<div class="nupuke"><a href="show_news.php">Loe Uudiseid 👓📇</a></div>
+	<div class="nupuke"><a href="gallery.php">Galerii</a></div>
 	<a href="upload_photo.php">Fotode üleslaadimine</a>
 	</div>
 </body>
