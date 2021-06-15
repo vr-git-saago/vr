@@ -32,6 +32,7 @@ $confirm_password_error = null;
 
 //Kui on uue kasutaja loomise nuppu vajutatud
 if (isset($_POST["user_data_submit"])) {
+    header('location: page.php');
     //kui on sisestatud nimi
     if(isset($_POST["first_name_input"]) and !empty($_POST["first_name_input"])){
         $name = test_input($_POST["first_name_input"]);

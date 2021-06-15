@@ -139,6 +139,7 @@ select {
     cursor: pointer;
 }
 .move {
+    justify-content: center;
     margin-left: 30px;
 }
 .move2 {
