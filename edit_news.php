@@ -26,6 +26,7 @@
 	$author_memory = $news_info_from_db[2];
     $pic_html = $news_info_from_db[3];
     $photo_id_from_db = $news_info_from_db[4];
+    $photo_alttext_from_db = $news_info_from_db[5];
     $new_photo = 0;
     $result = null;
 
@@ -47,7 +48,8 @@
                 $author_memory = $news_author_from_db;
                 $picture = "<label>Praegune foto:.$photo_alttext_from_db</label>";
                 $picture .= '<img class="edit_photo" src="../news_photos_normal/' .$photo_filename_from_db .'" alt="' .$photo_alttext_from_db .'" class="thumb" data-fn="'.$photo_filename_from_db .'" data-id="'.$photo_id_from_db.'">';
-                $news_info_from_db = [$news_title_from_db,$news_content_from_db, $news_author_from_db, $picture, $photo_id_from_db];
+                // teen listi väärtustest mida tagastada
+                $news_info_from_db = [$news_title_from_db, $news_content_from_db, $news_author_from_db, $picture, $photo_id_from_db, $photo_alttext_from_db];
             }
         }
 		$stmt -> close();
@@ -222,7 +224,7 @@
         <br>
 		<label for="alt_input">Alternatiivtekst ehk pildi selgitus:</label>
 		<br>
-		<input id="alt_text" name="alt_text" type="text" placeholder="Pildid on...?">
+		<input id="alt_text" name="alt_text" type="text" placeholder="Pildid on...?" value='<?php echo $photo_alttext_from_db; ?>'>
 		<br>
 		<input class="color" type="submit" name="news_submit" value="Uuenda uudis!">
 	</form>
