@@ -1,6 +1,8 @@
 body {
     font-family: 'Open Sans Condensed', sans-serif;
-    background-image: linear-gradient(to top left, #F5EFED 0%, #2293a4a8 100%);
+    background-image: linear-gradient(to top left, #F5EFED 0%, #2293a46b 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
 }
 h1 {
@@ -13,6 +15,64 @@ a {
 }
 p {
     text-align: center;
+}
+input {
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    margin: 0px 0px 20px 0px;
+
+}
+textarea {
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    margin: 0px 0px 20px 0px;
+}
+select {
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    margin: 0px 0px 20px 0px;
+}
+.label {
+    display: flex;
+    justify-content: space-between;
+    width: 15vw;
+}
+#label1 {
+    margin-left: 10px;
+}
+#label2 {
+    margin-left: 0px;
+}
+#label3 {
+    margin-right: -20px;
+}
+.color {
+    background-color: #2cc0d770;
+    transition: 0.2s ease-out;
+}
+.color:hover {
+    background-color: #2cc0d79e;
+    transition: 0.2s ease-in-out;
+}
+.back {
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-image: linear-gradient(to top left, #F5EFED 0%, #2293a47b 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%; 
+
 }
 
 .container{
@@ -35,19 +95,94 @@ p {
 .pilt {
    margin: 0px 20px 0px 20px;
 }
+.nupu-kast {
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: center;
+}
 .nupuke {
     margin: 10px;
-    width: 20vw;
+    width: 10vw;
     text-align: center;
     opacity: 0.8;
-    font-size: 30px;
+    font-size: 20px;
     background-color: #2cc0d79e;
     border-radius: 20px;
     padding: 1rem;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
     transition: 0.3s ease-out;
     
 }
 .nupuke:hover {
-    padding: 1rem 5rem 1rem 5rem;
+    background-color: #1293a7;
     transition: 0.3s ease-in-out;
+}
+
+.nupuke2 {
+    margin: 10px;
+    width: 10vw;
+    text-align: center;
+    opacity: 0.8;
+    font-size: 20px;
+    background-color: #2cc0d770;
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    transition: 0.2s ease-out;
+}
+
+
+.nupuke2:hover {
+    background-color: #2cc0d79e;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+.move {
+    margin-left: 30px;
+}
+.move2 {
+    margin-left: -2px;
+}
+
+.edit_photo {
+    display: flex;
+    margin: 10px 0px 10px 0px;
+    width: 15vh;
+    height: auto;
+}
+.u-sisu {
+    text-align: justify;
+    line-height: 1.5;
+    max-width: 37vw;
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+}
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+	z-index: -1;
+}
+.file-name {
+    position: absolute;
+    margin-left: -20px;
+  }
+.file_input_lable {
+    margin: 0px 0px 20px 0px;
+    width: 10vw;
+    text-align: center;
+    opacity: 0.8;
+    font-size: 20px;
+    background-color: #2cc0d73e;
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    transition: 0.2s ease-out;
+}
+.file_input_lable:hover {
+    background-color: #2cc0d79e;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
 }

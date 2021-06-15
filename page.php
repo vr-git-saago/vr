@@ -109,7 +109,7 @@ if(isset($_POST["login_submit"])) {
     <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="back">
 <div class="container">
     <h1>
     <?php
@@ -128,10 +128,9 @@ if(isset($_POST["login_submit"])) {
     <br>
     <input name="password_input" type="password"><span><?php echo $password_error; echo $login_error; ?></span>
     <br>
-    <input name="login_submit" type="submit" value="Logi sisse!"><span><?php echo $notice; ?></span>
+    <input class="color" name="login_submit" type="submit" value="Logi sisse!"><span><?php echo $notice; ?></span>
     </form>
-    <p>Loo endale <a href="add_user.php">kasutajakonto!</a></p>
-    <div class="nupuke"><a href="gallery.php">Galerii</a></div>
+    <div class="nupuke2 move"><a href="add_user.php">Loo kasutajakonto!</a></div>
     <hr>
     <?php
         echo $timehtml;

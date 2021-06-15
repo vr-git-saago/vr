@@ -112,9 +112,9 @@ if (isset($_POST["user_data_submit"])) {
             // salvestus ehk kasutaja loomine
             $notice = sign_up($name, $surname, $gender, $birth_date, $email, $_POST["password_input"]);
             if ($notice == 1) {
-                $notice = "Uus kasutaja on edukalt loodud!";
+                $notice = " Uus kasutaja on edukalt loodud!";
             } else {
-                $notice = "Kasutaja loomisel tekkis tehniline tõrge!";
+                $notice = " Kasutaja loomisel tekkis tehniline tõrge!";
             }
         }
     }
@@ -132,7 +132,7 @@ if (isset($_POST["user_data_submit"])) {
         <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">  
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body class="back">
     <div class="container">
         <h1>Loo endale kasutajakonto</h1>
         <p>See leht on valminud õppetöö raames!</p>
@@ -152,8 +152,11 @@ if (isset($_POST["user_data_submit"])) {
         <br>
         <span><?php echo $gender_error; ?></span>
         <br>
-
-        <label>Sünnikuupäev: </label>
+        <div class="label">
+        <label id="label1">Sünnikuupäev: </label>
+        <label id="label2">Sünnikuu: </label>
+        <label id="label3">Sünniaasta: </label>
+        </div>
 
         <?php
         //sünnikuupäev
@@ -169,7 +172,7 @@ if (isset($_POST["user_data_submit"])) {
         echo "\t </select> \n";
         ?>
 
-        <label >Sünnikuu: </label>
+      
 
         <?php
         echo '<select name="birth_month_input">' . "\n";
@@ -185,7 +188,7 @@ if (isset($_POST["user_data_submit"])) {
 
         ?>
 
-        <label>Sünniaasta: </label>
+        
 
         <?php
         echo '<select name="birth_year_input">' . "\n";
@@ -216,11 +219,8 @@ if (isset($_POST["user_data_submit"])) {
         <br>
         <input type="password" name="confirmpassword_input"><span><?php echo $confirm_password_error; ?></span>
         <br>
-        <input type="submit" name="user_data_submit" value="Loo kasutaja"><span><?php echo $notice; ?></span>
+        <input class="color" type="submit" name="user_data_submit" value="Loo kasutaja"><span><?php echo $notice; ?></span><div class="nupuke move2"><a href="page.php">Avalehele</a></div>
         </form>
-        <hr>
-        <p>Tagasi <a href="page.php">avalehele</a></p>
-        <hr>
         </div>
         </body>
         </html>

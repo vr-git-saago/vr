@@ -94,13 +94,21 @@ if(isset($_POST["photo_submit"])){
 <body>
 	<div class="container">
 	<h1>Fotode üleslaadimine</h1>
+	<div class="nupu-kast">
+	<div class="nupuke"><a href="gallery.php">Galerii 📸</a></div>
+	<div class="nupuke"><a href="home.php">Koju 🏠</a></div>
+    <div class="nupuke"><a href="?logout=1">Logi välja 🔑</a></div>
+    </div>
 	<p>See leht on valminud õppetöö raames!</p>
-	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p><p><a href="?logout=1">Logi välja</a></p>
+	<p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p>
 	<hr>
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
-		<label for="file_input">Vali foto fail!</label>
+		<div class ="file-input">
+			<label class="file_input_lable" for="file_input">Vali foto fail!</label>
+			<input class="file" id="file_input" name="file_input" type="file">
+			<p class="file-name"></p>
+		</div>
 		<br>
-		<input id="file_input" name="file_input" type="file" >
 		<br>
 		<br>
 		<label for="alt_input">Alternatiivtekst ehk pildi selgitus:</label>
@@ -109,6 +117,7 @@ if(isset($_POST["photo_submit"])){
 		<br>
 		<br>
 		<label>Privaatsustase:</label>
+		<br>
 		<br>
 		<label for="pirvacy_input_1">Privaatne</label>
 		<input id="privacy_input_1" name="privacy_input" type="radio" value="3" checked>
@@ -120,11 +129,23 @@ if(isset($_POST["photo_submit"])){
 		<input id="privacy_input_3" name="privacy_input" type="radio" value="1">
 		<br>
 		<br>
-		<input type="submit" id="photo_submit"  name="photo_submit" value="Lae pilt üles!"><span><?php echo $notice; ?></span>
+		<input class="color" type="submit" id="photo_submit"  name="photo_submit" value="Lae pilt üles!"><span><?php echo $notice; ?></span>
 	</form>
 	<p id="notice"><?php echo $photo_upload_error; echo $notice ?></p>
-	<div class="nupuke"><a href="gallery.php">Galerii</a></div>
-	<p >Tagasi <a href="home.php">koju</a></p>
 	</div>
+	<script>
+	const file = document.querySelector('#file_input');
+	file.addEventListener('change', (e) => {
+		// vali fail
+		const [file] = e.target.files;
+		// faili nimi ja suurus
+		const { name: fileName, size } = file;
+		// konverteerime faili suuruse baitidest kilibaitideks
+		const fileSize = (size / 1000).toFixed(2);
+		// ninh lisame selle lehele
+		const fileNameAndSize = `Valisid faili nimega: ${fileName} - ${fileSize}KB`;
+		document.querySelector('.file-name').textContent = fileNameAndSize;
+	});
+</script>
 </body>
 </html>

@@ -92,6 +92,7 @@ function save_image_to_file($new_temp_image, $target, $image_File_type){
 function store_photo_data($image_file_name, $alt, $privacy, $orig_name){
 	$notice = null;
 	$conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
+	$conn -> set_charset("utf8");
 	$stmt = $conn->prepare("INSERT INTO vr21_photos (vr21_photos_userid, vr21_photos_filename, vr21_photos_alttext, vr21_photos_privacy, vr21_photos_origname) VALUES (?, ?, ?, ?, ?)");
 	echo $conn->error;
 	$stmt->bind_param("issis", $_SESSION["user_id"], $image_file_name, $alt, $privacy, $orig_name);
@@ -104,4 +105,22 @@ function store_photo_data($image_file_name, $alt, $privacy, $orig_name){
 	$stmt->close();
 	$conn->close();
 	return $notice;
+}
+
+function store_news_photo($user_id, $image_file_name, $alt_text) {
+	$notice = [];
+	$conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
+	$stmt = $conn->prepare("INSERT INTO vr21_news_photos (vr21_news_photos_userid, vr21_news_photos_filename, vr21_news_photos_alttext) VALUES (?, ?, ?)");
+	echo $conn->error;
+	$stmt->bind_param("iss", $user_id, $image_file_name, $alt_text);
+	if($stmt->execute()){
+		$notice[] = 1;
+	} else {
+		$notice[] = $stmt->error;
+	}
+	$notice[] = $conn->insert_id;
+	$stmt->close();
+	$conn->close();
+	return $notice;
+	
 }

@@ -2,6 +2,7 @@
 
 require_once "../../../conf.php";
 require_once "fnc_image.php";
+require_once "usesession.php";
 
 // see funktsioon on funktsiooni failis
 $pictures_to_html = show_pic();
@@ -48,15 +49,18 @@ $pictures_to_html = show_pic();
   
     <div class="container">
 	<h1>Galerii</h1>
+    <div class="nupu-kast">
+	<div class="nupuke"><a href="home.php">Koju 🏠</a></div>
+    <div class="nupuke"><a href="?logout=1">Logi välja 🔑</a></div>
+    </div>
 	<p>See leht on valminud õppetöö raames!</p>
+    <p>Kasutaja: <?php echo $_SESSION['user_firstname'] .' ' .$_SESSION['user_lastname']; ?></p>
 	<hr>
     <div id="gallery" class="gallery">
     <?php echo $pictures_to_html; ?>
 	</div>
-    <div class="nupuke">
-        <a href="page.php">Avalehele</a>
     </div>
-    </div>
+    
 	
 </body>
 </html>
